@@ -17,9 +17,12 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useCreateIndex: true,
   useFindAndModify: false,
 });
+//does not work below?
+// app.use(require("./routes/api"));
+// app.use(require("./routes/html"));
 
-app.use(require("./routes/api.js"));
-app.use(require("./routes/html.js"));
+require("./routes/api")(app);
+require("./routes/html")(app);
 
 app.listen(PORT, () => {
   console.log(`Now listening on ${PORT}!`);
